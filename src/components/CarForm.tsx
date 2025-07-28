@@ -12,7 +12,7 @@ const CarForm: FC = () => {
           <input
             type='text'
             id='carName'
-            className='w-full rounded border-1 border-neutral-600 bg-neutral-900 px-4 py-2 outline-0'
+            className='w-full rounded border-1 border-neutral-600 bg-neutral-900 px-4 py-2 outline-0 focus:border-neutral-200'
           />
         </div>
         <div className='flex grow flex-col'>
@@ -22,7 +22,7 @@ const CarForm: FC = () => {
           <input
             type='number'
             id='carValue'
-            className='w-full [appearance:textfield] rounded border-1 border-neutral-600 bg-neutral-900 px-4 py-2 outline-0'
+            className='w-full [appearance:textfield] rounded border-1 border-neutral-600 bg-neutral-900 px-4 py-2 outline-0 focus:border-neutral-200'
           />
         </div>
         <div>

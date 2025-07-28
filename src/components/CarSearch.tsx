@@ -3,9 +3,9 @@ import type { FC } from 'react';
 const CarSearch: FC = () => {
   return (
     <div className='flex w-full items-center justify-between rounded bg-neutral-800 p-4'>
-      <h2>My Cars</h2>
+      <h2 className='font-bold'>My Cars</h2>
       <form className='flex max-w-1/2 items-center'>
-        <label htmlFor='search' className='mr-3'>
+        <label htmlFor='search' className='text mr-3'>
           Seach
         </label>
         <input

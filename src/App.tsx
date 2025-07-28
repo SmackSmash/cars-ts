@@ -6,7 +6,7 @@ import CarValue from './components/CarValue';
 
 const App: FC = () => {
   return (
-    <div className='p-4'>
+    <div className='flex flex-col gap-2 p-4'>
       <CarForm />
       <CarSearch />
       <CarList />

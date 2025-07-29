@@ -1,4 +1,4 @@
-import type { ChangeEvent, FC, FormEvent } from 'react';
+import { useState, type ChangeEvent, type FC, type FormEvent } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 import { addCar, changeCost, changeName, useAppDispatch, useAppSelector } from '../store';
 import Button from './Button';
@@ -6,6 +6,7 @@ import Button from './Button';
 const CarForm: FC = () => {
   const { name, cost } = useAppSelector(({ form }) => form);
   const dispatch = useAppDispatch();
+  const [error, setError] = useState<false | string>(false);
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(changeName(e.target.value));
@@ -17,13 +18,17 @@ const CarForm: FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(
-      addCar({
-        name,
-        cost,
-        id: nanoid()
-      })
-    );
+    if (!name || !cost) {
+      setError('Please fill both fields');
+    } else {
+      dispatch(
+        addCar({
+          name,
+          cost,
+          id: nanoid()
+        })
+      );
+    }
   };
 
   return (
@@ -57,6 +62,7 @@ const CarForm: FC = () => {
           <Button onClick={() => console.log('Clicked button')}>Add</Button>
         </div>
       </form>
+      {error && <div className='text-red-600'>{error}</div>}
     </div>
   );
 };

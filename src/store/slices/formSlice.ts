@@ -13,7 +13,15 @@ const initialState: InitialState = {
 const formSlice = createSlice({
   name: 'form',
   initialState,
-  reducers: {}
+  reducers: {
+    changeName: (state, action) => {
+      state.name = action.payload;
+    },
+    changeCost: (state, action) => {
+      state.cost = action.payload;
+    }
+  }
 });
 
+export const { changeName, changeCost } = formSlice.actions;
 export default formSlice.reducer;

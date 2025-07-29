@@ -1,27 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
+import type { Car } from '../../types';
 
-type Car = {
-  id: string;
-  name: string;
-  value: number;
-};
-
-type InitState = {
-  name: string;
-  cost: number | null;
+type InitialState = {
   searchTerm: string;
   cars: Car[];
 };
 
-const initialState: InitState = {
-  name: '',
-  cost: null,
+const initialState: InitialState = {
   searchTerm: '',
   cars: []
 };
 
 const carsSlice = createSlice({
-  name: 'init',
+  name: 'cars',
   initialState,
   reducers: {}
 });

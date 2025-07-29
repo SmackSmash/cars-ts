@@ -5,7 +5,6 @@ import Button from './Button';
 
 const CarForm: FC = () => {
   const { name, cost } = useAppSelector(({ form }) => form);
-
   const dispatch = useAppDispatch();
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {

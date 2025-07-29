@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent, type FC, type FormEvent } from 'react';
+import { type ChangeEvent, type FC, type FormEvent } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 import { addCar, changeCost, changeName, useAppDispatch, useAppSelector } from '../store';
 import Button from './Button';
@@ -8,40 +8,24 @@ const CarForm: FC = () => {
   const name = useAppSelector(({ form: { name } }) => name);
   const cost = useAppSelector(({ form: { cost } }) => cost);
   const dispatch = useAppDispatch();
-  const [error, setError] = useState<false | string>(false);
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(changeName(e.target.value));
-    if (!e.target.value || !cost) {
-      setError('Please fill both fields');
-    } else {
-      setError(false);
-    }
   };
 
   const handleValueChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(changeCost(Number(e.target.value)));
-    if (!e.target.value || !name) {
-      setError('Please fill both fields');
-    } else {
-      setError(false);
-    }
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!name || !cost) {
-      setError('Please fill both fields');
-    } else {
-      setError(false);
-      dispatch(
-        addCar({
-          name,
-          cost,
-          id: nanoid()
-        })
-      );
-    }
+    dispatch(
+      addCar({
+        name,
+        cost,
+        id: nanoid()
+      })
+    );
   };
 
   return (
@@ -54,6 +38,7 @@ const CarForm: FC = () => {
           <input
             type='text'
             id='carName'
+            required
             value={name}
             onChange={e => handleNameChange(e)}
             className='w-full rounded border-1 border-neutral-600 bg-neutral-900 px-4 py-2 outline-0 focus:border-neutral-200'
@@ -66,16 +51,18 @@ const CarForm: FC = () => {
           <input
             type='number'
             id='carValue'
+            required
             value={cost || ''}
             onChange={e => handleValueChange(e)}
             className='w-full [appearance:textfield] rounded border-1 border-neutral-600 bg-neutral-900 px-4 py-2 outline-0 focus:border-neutral-200'
           />
         </div>
         <div>
-          <Button onClick={() => console.log('Clicked button')}>Add</Button>
+          <Button type='submit' onClick={() => console.log('Clicked button')}>
+            Add
+          </Button>
         </div>
       </form>
-      {error && <div className='text-red-600'>{error}</div>}
     </div>
   );
 };

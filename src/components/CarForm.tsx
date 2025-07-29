@@ -1,10 +1,22 @@
-import type { FC } from 'react';
+import type { ChangeEvent, FC, FormEvent } from 'react';
 import Button from './Button';
+import { useAppSelector } from '../store';
 
 const CarForm: FC = () => {
+  const { name, cost } = useAppSelector(({ form }) => form);
+
+  const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {};
+
+  const handleValueChange = (e: ChangeEvent<HTMLInputElement>) => {};
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(name, cost);
+  };
+
   return (
     <div className='w-full rounded bg-neutral-800 p-4'>
-      <form className='flex w-full items-end gap-4'>
+      <form onSubmit={e => handleSubmit(e)} className='flex w-full items-end gap-4'>
         <div className='flex grow flex-col'>
           <label htmlFor='carName' className='mb-1.5'>
             Car Name
@@ -12,6 +24,8 @@ const CarForm: FC = () => {
           <input
             type='text'
             id='carName'
+            value={name}
+            onChange={e => handleNameChange(e)}
             className='w-full rounded border-1 border-neutral-600 bg-neutral-900 px-4 py-2 outline-0 focus:border-neutral-200'
           />
         </div>
@@ -22,6 +36,8 @@ const CarForm: FC = () => {
           <input
             type='number'
             id='carValue'
+            value={cost || ''}
+            onChange={e => handleValueChange(e)}
             className='w-full [appearance:textfield] rounded border-1 border-neutral-600 bg-neutral-900 px-4 py-2 outline-0 focus:border-neutral-200'
           />
         </div>

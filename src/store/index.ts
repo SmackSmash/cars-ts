@@ -5,6 +5,7 @@ import form from './slices/formSlice';
 export { changeName, changeCost } from './slices/formSlice';
 
 import cars from './slices/carsSlice';
+export { changeSearchTerm, addCar, removeCar } from './slices/carsSlice';
 
 const store = configureStore({
   reducer: {

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { Car } from '../../types';
 
 type InitialState = {
@@ -14,7 +14,18 @@ const initialState: InitialState = {
 const carsSlice = createSlice({
   name: 'cars',
   initialState,
-  reducers: {}
+  reducers: {
+    changeSearchTerm: (state, action: PayloadAction<string>) => {
+      state.searchTerm = action.payload;
+    },
+    addCar: (state, action: PayloadAction<Car>) => {
+      state.cars.push(action.payload);
+    },
+    removeCar: (state, action: PayloadAction<string>) => {
+      state.cars = state.cars.filter(car => car.id !== action.payload);
+    }
+  }
 });
 
+export const { changeSearchTerm, addCar, removeCar } = carsSlice.actions;
 export default carsSlice.reducer;

@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 
 import form from './slices/formSlice';
-export { changeName, changeCost, reset } from './slices/formSlice';
+export { changeName, changeCost } from './slices/formSlice';
 
 import cars from './slices/carsSlice';
 export { changeSearchTerm, addCar, removeCar } from './slices/carsSlice';

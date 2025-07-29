@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import initReducer from './slices/initSlice';
+import carsReducer from './slices/carsSlice';
 
 const store = configureStore({
   reducer: {
-    initReducer
+    carsReducer
   }
 });
 

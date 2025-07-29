@@ -4,16 +4,28 @@ import { addCar, changeCost, changeName, useAppDispatch, useAppSelector } from '
 import Button from './Button';
 
 const CarForm: FC = () => {
-  const { name, cost } = useAppSelector(({ form }) => form);
+  // No destructuring to avoid rendering errors
+  const name = useAppSelector(({ form: { name } }) => name);
+  const cost = useAppSelector(({ form: { cost } }) => cost);
   const dispatch = useAppDispatch();
   const [error, setError] = useState<false | string>(false);
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(changeName(e.target.value));
+    if (!e.target.value || !cost) {
+      setError('Please fill both fields');
+    } else {
+      setError(false);
+    }
   };
 
   const handleValueChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(changeCost(Number(e.target.value)));
+    if (!e.target.value || !name) {
+      setError('Please fill both fields');
+    } else {
+      setError(false);
+    }
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -21,6 +33,7 @@ const CarForm: FC = () => {
     if (!name || !cost) {
       setError('Please fill both fields');
     } else {
+      setError(false);
       dispatch(
         addCar({
           name,

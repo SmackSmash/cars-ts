@@ -1,6 +1,6 @@
 import type { ChangeEvent, FC, FormEvent } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
-import { addCar, changeCost, changeName, useAppDispatch, useAppSelector } from '../store';
+import { addCar, changeCost, changeName, reset, useAppDispatch, useAppSelector } from '../store';
 import Button from './Button';
 
 const CarForm: FC = () => {
@@ -25,6 +25,7 @@ const CarForm: FC = () => {
         id: nanoid()
       })
     );
+    dispatch(reset());
   };
 
   return (

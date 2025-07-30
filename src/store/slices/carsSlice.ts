@@ -3,12 +3,12 @@ import type { Car } from '../../types';
 
 type InitialState = {
   searchTerm: string;
-  cars: Car[];
+  list: Car[];
 };
 
 const initialState: InitialState = {
   searchTerm: '',
-  cars: []
+  list: []
 };
 
 const carsSlice = createSlice({
@@ -19,10 +19,10 @@ const carsSlice = createSlice({
       state.searchTerm = action.payload;
     },
     addCar: (state, action: PayloadAction<Car>) => {
-      state.cars.push(action.payload);
+      state.list.push(action.payload);
     },
     removeCar: (state, action: PayloadAction<string>) => {
-      state.cars = state.cars.filter(car => car.id !== action.payload);
+      state.list = state.list.filter(car => car.id !== action.payload);
     }
   }
 });

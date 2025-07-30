@@ -2,12 +2,12 @@ import type { FC } from 'react';
 import { useAppSelector } from '../store';
 
 const CarList: FC = () => {
-  const { cars } = useAppSelector(({ cars }) => cars);
+  const list = useAppSelector(({ cars: { list } }) => list);
 
   return (
     <div className='w-full rounded bg-neutral-800 p-4'>
-      {cars.length ? (
-        cars.map(car => (
+      {list.length ? (
+        list.map(car => (
           <div>
             {car.name} £{car.cost}
           </div>

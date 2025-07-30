@@ -19,7 +19,7 @@ const CarList: FC = () => {
           .map(({ name, cost, id }) => (
             <div key={id} className='flex items-center gap-2 rounded bg-neutral-900 py-2 pr-2 pl-4'>
               {name}
-              <div className='rounded bg-neutral-700 px-2 py-0.5'>£{cost}</div>
+              <div className='rounded-full bg-neutral-700 px-2.5 py-0.5'>£{cost}</div>
               <Button onClick={() => handleClick(id)} className='ml-auto'>
                 Remove
               </Button>

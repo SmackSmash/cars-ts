@@ -58,9 +58,7 @@ const CarForm: FC = () => {
           />
         </div>
         <div>
-          <Button type='submit' onClick={() => console.log('Clicked button')}>
-            Add
-          </Button>
+          <Button type='submit'>Add</Button>
         </div>
       </form>
     </div>

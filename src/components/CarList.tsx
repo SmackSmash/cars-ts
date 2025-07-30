@@ -13,10 +13,10 @@ const CarList: FC = () => {
   return (
     <div className='w-full rounded bg-neutral-800 p-4'>
       {list.length ? (
-        list.map(car => (
-          <div className='flex items-center justify-between'>
-            {car.name} £{car.cost}
-            <Button onClick={() => handleClick(car.id)}>Remove</Button>
+        list.map(({ name, cost, id }) => (
+          <div key={id} className='flex items-center justify-between'>
+            {name} £{cost}
+            <Button onClick={() => handleClick(id)}>Remove</Button>
           </div>
         ))
       ) : (

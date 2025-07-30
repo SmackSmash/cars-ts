@@ -15,7 +15,7 @@ const CarList: FC = () => {
     <div className='flex w-full flex-col gap-2 rounded bg-neutral-800 p-4'>
       {list.length ? (
         list
-          .filter(({ name }) => name.toLowerCase().includes(searchTerm))
+          .filter(({ name }) => name.toLowerCase().includes(searchTerm.toLowerCase()))
           .map(({ name, cost, id }) => (
             <div
               key={id}

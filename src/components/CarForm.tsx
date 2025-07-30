@@ -51,7 +51,7 @@ const CarForm: FC = () => {
           <input
             type='number'
             id='carValue'
-            required
+            min='1'
             value={cost || ''}
             onChange={e => handleValueChange(e)}
             className='w-full [appearance:textfield] rounded border-1 border-neutral-600 bg-neutral-900 px-4 py-2 outline-0 focus:border-neutral-200'

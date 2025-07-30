@@ -1,4 +1,4 @@
-import { type ChangeEvent, type FC, type FormEvent } from 'react';
+import { useRef, type ChangeEvent, type FC, type FormEvent } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 import { addCar, changeCost, changeName, useAppDispatch, useAppSelector } from '../store';
 import Button from './Button';
@@ -8,6 +8,8 @@ const CarForm: FC = () => {
   const name = useAppSelector(({ form: { name } }) => name);
   const cost = useAppSelector(({ form: { cost } }) => cost);
   const dispatch = useAppDispatch();
+
+  const nameInput = useRef<HTMLInputElement>(null);
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(changeName(e.target.value));
@@ -26,6 +28,7 @@ const CarForm: FC = () => {
         id: nanoid()
       })
     );
+    nameInput.current!.focus();
   };
 
   return (
@@ -39,6 +42,7 @@ const CarForm: FC = () => {
             type='text'
             id='carName'
             required
+            ref={nameInput}
             value={name}
             onChange={e => handleNameChange(e)}
             className='w-full rounded border-1 border-neutral-600 bg-neutral-900 px-4 py-2 outline-0 focus:border-neutral-200'

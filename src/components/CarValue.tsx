@@ -7,7 +7,7 @@ const CarValue: FC = () => {
 
   return (
     <div className='flex w-full justify-end rounded bg-neutral-800 p-4'>
-      Total:{' '}
+      Total: £
       {list
         .filter(car => car.name !== searchTerm)
         .reduce((acc, car) => {

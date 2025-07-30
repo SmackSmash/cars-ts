@@ -11,10 +11,13 @@ const CarList: FC = () => {
   };
 
   return (
-    <div className='w-full rounded bg-neutral-800 p-4'>
+    <div className='flex w-full flex-col gap-2 rounded bg-neutral-800 p-4'>
       {list.length ? (
         list.map(({ name, cost, id }) => (
-          <div key={id} className='flex items-center justify-between'>
+          <div
+            key={id}
+            className='flex items-center justify-between rounded bg-neutral-900 py-2 pr-2 pl-4'
+          >
             {name} £{cost}
             <Button onClick={() => handleClick(id)}>Remove</Button>
           </div>

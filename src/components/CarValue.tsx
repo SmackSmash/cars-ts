@@ -12,9 +12,7 @@ const CarValue: FC = () => {
         £
         {list
           .filter(car => car.name !== searchTerm)
-          .reduce((acc, car) => {
-            return acc + car.cost;
-          }, 0)
+          .reduce((acc, car) => acc + car.cost, 0)
           .toLocaleString('en-US')}
       </div>
     </div>

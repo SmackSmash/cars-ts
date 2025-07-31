@@ -5,6 +5,7 @@ import Button from './Button';
 const CarList: FC = () => {
   const searchTerm = useAppSelector(({ cars: { searchTerm } }) => searchTerm);
   const list = useAppSelector(({ cars: { list } }) => list);
+  const nameToAdd = useAppSelector(({ form: { name } }) => name);
   const dispatch = useAppDispatch();
 
   const handleClick = (id: string) => {
@@ -18,7 +19,11 @@ const CarList: FC = () => {
           .filter(({ name }) => name.toLowerCase().includes(searchTerm.toLowerCase()))
           .map(({ name, cost, id }) => (
             <div key={id} className='flex items-center gap-2 rounded bg-neutral-900 py-2 pr-2 pl-4'>
-              {name}
+              {name.includes(nameToAdd) && nameToAdd ? (
+                <span className='font-bold'>{name}</span>
+              ) : (
+                name
+              )}
               <div className='rounded-full bg-neutral-700 px-2.5 py-0.5'>
                 £{cost.toLocaleString('en-US')}
               </div>

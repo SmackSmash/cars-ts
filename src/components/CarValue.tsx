@@ -6,13 +6,17 @@ const CarValue: FC = () => {
   const searchTerm = useAppSelector(({ cars: { searchTerm } }) => searchTerm);
 
   return (
-    <div className='flex w-full justify-end rounded bg-neutral-800 p-4'>
-      Total: £
-      {list
-        .filter(car => car.name !== searchTerm)
-        .reduce((acc, car) => {
-          return acc + car.cost;
-        }, 0)}
+    <div className='flex w-full items-center justify-end rounded bg-neutral-800 p-4'>
+      Total:
+      <div className='ml-2 rounded-full bg-emerald-700 px-2.5 py-0.5'>
+        £
+        {list
+          .filter(car => car.name !== searchTerm)
+          .reduce((acc, car) => {
+            return acc + car.cost;
+          }, 0)
+          .toLocaleString('en-US')}
+      </div>
     </div>
   );
 };
